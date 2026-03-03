@@ -75,22 +75,30 @@
      </ul>
 </section>
 <section>
-    <h2>AI Recruiter Assistant (Coming Soon)</h2>
-    <p>
-        This portfolio will soon include an AI-powered assistant trained on my professional
-        experience and ETL architecture projects. Recruiters will be able to:
-    </p>
-    <ul>
-        <li>Ask about ETL framework design and restartability strategy</li>
-        <li>Understand my production support leadership experience</li>
-        <li>Explore migration case studies</li>
-        <li>Get detailed technical explanations of SQL optimization methods</li>
-    </ul>
+    <h2>AI Recruiter Assistant</h2>
+    <input type="text" id="question" placeholder="Ask about my experience..." />
+    <button onclick="askAI()">Ask</button>
+    <p id="response"></p>
 </section>
 <section>
     <h2>Contact</h2>
     <p>Email: Bonala.shanthi@gmail.com</p>
     <p>LinkedIn: linkedin.com/in/viswashanthi-bonala-18045b52</p>
 </section>
+<section> ... chatbot UI ... </section>
+<script>
+async function askAI() {
+    const question = document.getElementById("question").value;
+
+    const res = await fetch("https://viswashanthi-ai-assistant.onrender.com/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+    });
+
+    const data = await res.json();
+    document.getElementById("response").innerText = data.answer;
+}
+</script>
 </body>
 </html>
